@@ -1,0 +1,222 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(to bottom, #0a0a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #00ff00;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#game-container {
+    width: 100%;
+    max-width: 900px;
+    position: relative;
+}
+
+.screen {
+    display: none;
+    text-align: center;
+    padding: 20px;
+}
+
+.screen.active {
+    display: block;
+}
+
+.game-title {
+    font-size: 4em;
+    color: #00ff00;
+    text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00;
+    margin-bottom: 50px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+h2 {
+    font-size: 2.5em;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+    margin-bottom: 30px;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.menu-btn {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: #00ff00;
+    border: 2px solid #00ff00;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    min-width: 300px;
+}
+
+.menu-btn:hover {
+    background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+    transform: scale(1.05);
+}
+
+.menu-btn:active {
+    transform: scale(0.98);
+}
+
+#room-code-display {
+    font-size: 3em;
+    color: #ffff00;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px 40px;
+    border: 3px solid #ffff00;
+    border-radius: 10px;
+    margin: 20px 0;
+    letter-spacing: 10px;
+    text-shadow: 0 0 10px #ffff00;
+}
+
+#waiting-message {
+    font-size: 1.2em;
+    color: #00ffff;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+#room-code-input {
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    font-size: 2em;
+    padding: 15px;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+#room-code-input::placeholder {
+    color: rgba(0, 255, 0, 0.5);
+}
+
+.instructions {
+    text-align: left;
+    max-width: 500px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    color: #00ffff;
+    line-height: 1.8;
+}
+
+.instructions p {
+    margin: 5px 0;
+}
+
+.instructions strong {
+    color: #ffff00;
+}
+
+#game-screen {
+    position: relative;
+}
+
+#game-hud {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #00ff00;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.hud-item {
+    font-size: 1.3em;
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+#powerup-status {
+    color: #ffff00;
+    min-width: 200px;
+}
+
+#gameCanvas {
+    display: block;
+    background: #000;
+    border: 3px solid #00ff00;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+    margin: 0 auto;
+}
+
+#pause-overlay,
+#game-over-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    border: 3px solid #00ff00;
+    padding: 40px 60px;
+    border-radius: 10px;
+    z-index: 10;
+}
+
+#pause-overlay h2,
+#game-over-overlay h2 {
+    margin-bottom: 30px;
+}
+
+#final-score {
+    font-size: 1.5em;
+    color: #ffff00;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 2.5em;
+    }
+    
+    h2 {
+        font-size: 1.8em;
+    }
+    
+    .menu-btn {
+        min-width: 250px;
+        font-size: 1em;
+        padding: 12px 30px;
+    }
+    
+    #room-code-display {
+        font-size: 2em;
+        padding: 15px 30px;
+    }
+}

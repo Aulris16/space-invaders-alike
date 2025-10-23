@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
+    
+    <title>Void Invaders</title>
+  </head>
+  <body>
+    <div id="game-container">
+      <div id="menu-screen" class="screen-active">
+        <h1 class="game-title">VOID INVADERS</h1>
+        <div class="menu-buttons">
+          <button class="menu-btn" id="btn-pve">MAINKAN PVE</button>
+          <button class="menu-btn" id="btn-create-room">
+            Create Multiplayer Room
+          </button>
+          <button class="menu-btn" id="btn-join-room">
+            Join Multiplayer Room
+          </button>
+          <button class="menu-btn" id="btn-instructions">Instruksi</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="level-select-screen" class="screen">
+      <h2>Select Difficulty Level</h2>
+      <div class="menu-buttons">
+        <button class="menu-btn level-btn" data-level="1">
+          Level 1 - Easy
+        </button>
+        <button class="menu-btn level-btn" data-level="2">
+          Level 2 - Medium
+        </button>
+        <button class="menu-btn level-btn" data-level="3">
+          Level 3 - Hard
+        </button>
+        <button class="menu-btn" id="btn-back-from-level">Kembali</button>
+      </div>
+    </div>
+
+    <div id="multiplayer-screen" class="screen">
+      <h2 id="multiplayer-title">Multiplayer</h2>
+      <div id="room-creation">
+        <p>Bagikan kode room ini dengan temanmu:</p>
+        <div id="room-code-display"></div>
+        <p id="waiting-message">Menunggu lawan...</p>
+      </div>
+      <div id="room-joining" style="display: none">
+        <input
+          type="text"
+          id="room-code-input"
+          placeholder="Enter Room Code"
+          maxlength="6"
+        />
+        <button class="menu-btn" id="btn-join-game">Join Game</button>
+      </div>
+      <button class="menu-btn" id="btn-back-from-multiplayer">Kembali</button>
+    </div>
+
+    <div id="instructions-screen" class="screen">
+      <h2>How to Play</h2>
+      <div class="instructions">
+        <p><strong>Controls:</strong></p>
+        <p>← → Arrow Keys: Move Left/Right</p>
+        <p>SPACEBAR: Shoot</p>
+        <p>ESC: Pause Game</p>
+        <br />
+        <p><strong>Gameplay:</strong></p>
+        <p>• Destroy all enemies to progress</p>
+        <p>• Collect power-ups for special abilities</p>
+        <p>• Avoid enemy bullets</p>
+        <p>• Score points for each enemy destroyed</p>
+        <br />
+        <p><strong>Power-ups:</strong></p>
+        <p>🔵 Rapid Fire - Shoot faster</p>
+        <p>🟢 Shield - Temporary invincibility</p>
+        <p>🟡 Multi-Shot - Shoot 3 bullets at once</p>
+      </div>
+      <button class="menu-btn" id="btn-back-from-instructions">Kembali</button>
+    </div>
+
+    <div id="game-screen" class="screen">
+      <div id="game-hud">
+        <div class="hud-item">Score: <span id="score">0</span></div>
+        <div class="hud-item">Lives: <span id="lives">3</span></div>
+        <div class="hud-item">Level: <span id="current-level">1</span></div>
+        <div class="hud-item" id="powerup-status"></div>
+        <div class="hud-item" id="opponent-info" style="display: none"></div>
+      </div>
+      <canvas id="gameCanvas"></canvas>
+      <div id="pause-overlay" style="display: none">
+        <h2>PAUSED</h2>
+        <button class="menu-btn" id="btn-resume">Resume</button>
+        <button class="menu-btn" id="btn-quit">Quit to Menu</button>
+      </div>
+      <div id="game-over-overlay" style="display: none">
+        <h2 id="game-over-title">GAME OVER</h2>
+        <p id="final-score"></p>
+        <button class="menu-btn" id="btn-play-again">Play Again</button>
+        <button class="menu-btn" id="btn-main-menu">Main Menu</button>
+      </div>
+    </div>
+
+
+  </body>
+  <footer></footer>
+</html>
